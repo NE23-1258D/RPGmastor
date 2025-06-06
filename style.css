@@ -48,9 +48,6 @@ body {
 
 /* 妖精の画像のスタイル */
 #fairy-image {
-    position: absolute;
-    top: auto;
-    left: auto;
     display: block; /* 画像をブロック要素として扱い、margin: auto を機能させる */
     max-width: 100%; /* 親コンテナのサイズに合わせる */
     max-height: 100%; /* 親コンテナのサイズに合わせる */
