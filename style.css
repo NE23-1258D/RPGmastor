@@ -1,0 +1,170 @@
+/* 全体のリセット */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #384048; /* フォールバック色 */
+    font-family: 'DotGothic16', sans-serif;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 背景画像を画面全体に表示するレイヤー */
+.background-image-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('irasuto.png'); /* haikei.jpg を指定 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* 他の要素の下に表示 */
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+/* ★★★ 新規追加: 中央に配置する画像コンテナ ★★★ */
+.center-image-container {
+    position: fixed; /* 画面に固定 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 要素の中心を画面の中心に合わせる */
+    z-index: 100; /* 最前面に表示 */
+    
+    /* 画像の描画品質を維持 (画像がドット絵の場合に特に効果的) */
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+
+    /* width/heightはJavaScriptで動的に調整されるか、画像自体のサイズに依存 */
+    /* あるいは、ここでmax-width/max-heightを設定することも可能 */
+    /* max-width: 80vw;
+    max-height: 80vh; */
+}
+
+/* 妖精の画像のスタイル */
+#fairy-image {
+    display: block; /* 画像をブロック要素として扱い、margin: auto を機能させる */
+    max-width: 100%; /* 親コンテナのサイズに合わせる */
+    max-height: 100%; /* 親コンテナのサイズに合わせる */
+    object-fit: contain; /* アスペクト比を維持しつつ、コンテナに収まるように拡大縮小 */
+    image-rendering: pixelated; /* ドット絵画像を鮮明に表示 */
+    -ms-interpolation-mode: nearest-neighbor;
+}
+/* ★★★ /新規追加 ★★★ */
+
+
+/* ゲーム画面全体を包むコンテナ (UIパネル部分) */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 水平方向の中央寄せ */
+    width: 100vw; /* 画面の幅全体を使用 */
+    
+    position: fixed; /* 画面に対して固定 */
+    bottom: 0; /* 画面の一番下に配置 */
+    left: 0; /* 画面の左端に配置 */
+    
+    height: auto; /* コンテンツの高さに合わせて自動調整 */
+    padding: 20px; /* UI要素と端の間に適切な余白 */
+    box-sizing: border-box;
+
+    background-color: transparent; /* 背景が透けて見えるように透明に */
+
+    border: none;
+    justify-content: flex-end; /* 子要素を下揃えにする */
+    z-index: 0; /* 背景レイヤーより上に表示 */
+}
+
+/* キャラクター表示エリア (旧 #character-display) */
+/* この要素は、ドット絵を配置しなくなったため、ただのスペース確保用になる */
+#character-display {
+    background: transparent;
+    border: none;
+    position: relative; /* 必要であれば */
+    overflow: hidden;
+    image-rendering: pixelated;
+
+    flex-grow: 1; /* 親要素の残りのスペースを占める */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ★★★ 削除: .dot-character および .dot-character::before のスタイルブロック ★★★ */
+/* .dot-character { ... } */
+/* .dot-character::before { ... } */
+/* ★★★ /削除 ★★★ */
+
+/* テキストボックス */
+#text-box {
+    width: 90%;
+    min-height: 80px;
+    background-color: #d8e0e8;
+    border: 4px solid #525e6a;
+    outline: 2px solid #a0a8b0;
+    outline-offset: -6px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    image-rendering: pixelated;
+    margin-bottom: 20px;
+}
+
+#dialogue-text {
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.4;
+    color: #2a2a2a;
+}
+
+/* ナビゲーションボタンエリア */
+.navigation-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+}
+
+.navigation-buttons button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border: 2px solid #525e6a;
+    background-color: #6c757d;
+    color: #e0e6ed;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    image-rendering: pixelated;
+}
+
+#back-button {
+    background-color: #6c757d;
+}
+
+#back-button:hover {
+    background-color: #5a6268;
+}
+
+#next-button {
+    background-color: #007bff;
+}
+
+#next-button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:focus {
+    outline: 2px dotted #e0e6ed;
+    outline-offset: -2px;
+}
